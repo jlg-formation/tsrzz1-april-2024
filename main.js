@@ -9,8 +9,10 @@ const cx0 = 0;
 const cy0 = 0;
 const r = 45;
 
+const offset = -Math.PI / 2;
+
 for (let i = 0; i < 10; i++) {
-  const angle = i * (circlePerimeter / 10);
+  const angle = i * (circlePerimeter / 10) + offset;
   const x = cx0 + r * Math.cos(angle);
   const y = cy0 + r * Math.sin(angle);
 
