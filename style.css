@@ -16,4 +16,10 @@ svg {
     stroke-width: 0.02em;
     fill: transparent;
   }
+
+  g.samples {
+    circle {
+      fill: black;
+    }
+  }
 }
