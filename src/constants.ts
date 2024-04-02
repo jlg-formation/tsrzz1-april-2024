@@ -2,7 +2,9 @@ export const circlePerimeter = 2 * Math.PI;
 
 export const cx0 = 0;
 export const cy0 = 0;
-export const r = 45;
+export const r0 = 45;
+
+export const r = 0.5;
 
 export const offset = -Math.PI / 2;
 

@@ -13,7 +13,7 @@ svg {
 
   circle {
     stroke: black;
-    stroke-width: 0.02em;
+    stroke-width: 0.01em;
     fill: transparent;
   }
 
@@ -26,7 +26,7 @@ svg {
   g.lines {
     line {
       stroke: black;
-      stroke-width: 0.02em;
+      stroke-width: 0.01em;
     }
   }
 }

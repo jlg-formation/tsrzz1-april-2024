@@ -12,6 +12,7 @@ export class Command {
 
   constructor() {
     this.render();
+    this.setActions();
   }
 
   onUpdate(callback: Callback) {
@@ -27,8 +28,22 @@ export class Command {
         `div.command label.${key} input`,
         HTMLInputElement
       );
-      console.log("sliderElt: ", sliderElt);
+
       sliderElt.value = this.config[key] + "";
+    }
+  }
+
+  setActions() {
+    for (const key of getKeys(this.config)) {
+      const sliderElt = querySelector(
+        `div.command label.${key} input`,
+        HTMLInputElement
+      );
+      sliderElt.addEventListener("input", (event) => {
+        this.config[key] = +sliderElt.value;
+        this.render();
+        this.callback(this.config);
+      });
     }
   }
 

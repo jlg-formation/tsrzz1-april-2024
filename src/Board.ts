@@ -1,4 +1,4 @@
-import { SVG_NS } from "./constants";
+import { SVG_NS, r } from "./constants";
 import { Config } from "./interfaces/Config";
 import { getAngle, getPointOnCircle } from "./math";
 import { querySelector, setNbrAttribute } from "./utils";
@@ -26,11 +26,10 @@ export class Board {
       const angle = getAngle(i, samples);
       const { x, y } = getPointOnCircle(angle);
       const elt = document.createElementNS(SVG_NS, "circle");
-      setNbrAttribute(elt, "r", 1);
+      setNbrAttribute(elt, "r", r);
       setNbrAttribute(elt, "cx", x);
       setNbrAttribute(elt, "cy", y);
 
-      console.dir(elt);
       sampleGroup.appendChild(elt);
     }
 
@@ -47,7 +46,6 @@ export class Board {
       setNbrAttribute(elt, "x2", p2.x);
       setNbrAttribute(elt, "y2", p2.y);
 
-      console.dir(elt);
       lineGroup.appendChild(elt);
     }
   }
