@@ -9,3 +9,7 @@ export const querySelector = (selector: string): HTMLElement => {
 export const setNbrAttribute = (elt: Element, key: string, value: number) => {
   elt.setAttribute(key, value + "");
 };
+
+export const getKeys = <T extends object>(obj: T): (keyof T)[] => {
+  return Object.keys(obj) as (keyof T)[];
+};
