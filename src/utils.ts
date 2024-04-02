@@ -5,3 +5,7 @@ export const querySelector = (selector: string): HTMLElement => {
   }
   return elt;
 };
+
+export const setNbrAttribute = (elt: Element, key: string, value: number) => {
+  elt.setAttribute(key, value + "");
+};
