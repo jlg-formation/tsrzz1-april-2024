@@ -1,7 +1,17 @@
-export const querySelector = (selector: string): HTMLElement => {
-  const elt = document.querySelector<HTMLElement>(selector);
+import { Class } from "./interfaces/utility-types";
+
+export const querySelector = <T extends HTMLElement>(
+  selector: string,
+  type?: Class<T>
+): T => {
+  const elt = document.querySelector<T>(selector);
   if (elt === null) {
-    throw new Error("oups");
+    throw new Error(`Cannot find element with selector = ${selector}`);
+  }
+  if (type) {
+    if (!(elt instanceof type)) {
+      throw new Error(`Element ${selector} not instance of ${type.name}`);
+    }
   }
   return elt;
 };

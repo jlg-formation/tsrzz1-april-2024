@@ -22,6 +22,13 @@ export class Command {
     for (const key of getKeys(this.config)) {
       const elt = querySelector(`div.command label.${key} span.value`);
       elt.innerHTML = this.config[key] + "";
+
+      const sliderElt = querySelector(
+        `div.command label.${key} input`,
+        HTMLInputElement
+      );
+      console.log("sliderElt: ", sliderElt);
+      sliderElt.value = this.config[key] + "";
     }
   }
 
