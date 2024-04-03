@@ -5,10 +5,20 @@ export type Callback = (newConfig: Config) => void;
 
 export class Command {
   callback: Callback = () => {};
-  config: Config = {
+  _config: Config = {
     samples: 0,
     multiplicationFactor: 0,
   };
+
+  set config(val: Config) {
+    console.log("set config");
+    this._config = val;
+    this.render();
+  }
+
+  get config() {
+    return this._config;
+  }
 
   constructor() {
     this.render();
@@ -39,16 +49,11 @@ export class Command {
         `div.command label.${key} input`,
         HTMLInputElement
       );
-      sliderElt.addEventListener("input", (event) => {
-        this.config[key] = +sliderElt.value;
+      sliderElt.addEventListener("input", () => {
+        this.config = { ...this.config, [key]: +sliderElt.value };
         this.render();
         this.callback(this.config);
       });
     }
-  }
-
-  setConfig(config: Partial<Config>) {
-    this.config = { ...this.config, ...config };
-    this.render();
   }
 }

@@ -13,7 +13,7 @@ board.setConfig(config);
 board.render();
 
 const command = new Command();
-command.setConfig(config);
+command.config = config;
 command.onUpdate((newConfig) => {
   board.setConfig(newConfig);
   board.render();
