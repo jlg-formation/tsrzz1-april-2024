@@ -3,26 +3,29 @@ import { getKeys, querySelector } from "./utils";
 
 export type Callback = (newConfig: Config) => void;
 
+const playBtn = querySelector("div.command div.buttons button[title='Play']");
+console.log("playBtn: ", playBtn);
+
 export class Command {
-  callback: Callback = () => {};
   _config: Config = {
     samples: 0,
     multiplicationFactor: 0,
   };
+  callback: Callback = () => {};
 
-  set config(val: Config) {
-    console.log("set config");
-    this._config = val;
+  constructor() {
     this.render();
+    this.setActions();
   }
 
   get config() {
     return this._config;
   }
 
-  constructor() {
+  set config(val: Config) {
+    console.log("set config");
+    this._config = val;
     this.render();
-    this.setActions();
   }
 
   onUpdate(callback: Callback) {
@@ -55,5 +58,13 @@ export class Command {
         this.callback(this.config);
       });
     }
+
+    this.setPlayAction();
+  }
+
+  setPlayAction() {
+    playBtn.addEventListener("click", () => {
+      console.log("play pause");
+    });
   }
 }
