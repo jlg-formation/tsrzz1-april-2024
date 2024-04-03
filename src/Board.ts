@@ -7,10 +7,7 @@ const sampleGroup = querySelector("svg g.samples");
 const lineGroup = querySelector("svg g.lines");
 
 export class Board {
-  config: Config = {
-    samples: 0,
-    multiplicationFactor: 0,
-  };
+  constructor(private config: Config) {}
 
   clean() {
     sampleGroup.innerHTML = "";
