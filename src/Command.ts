@@ -8,9 +8,12 @@ const playBtn = querySelector("div.command div.buttons button[title='Play']");
 const randomBtn = querySelector(
   "div.command div.buttons button[title='Random']",
 );
-const iconElt = querySelector("div.command div.buttons button[title='Play'] i");
 
 export class Command {
+  static readonly iconElt = querySelector(
+    "div.command div.buttons button[title='Play'] i",
+  );
+
   #config: Config = {
     samples: 0,
     multiplicationFactor: 0,
@@ -68,9 +71,9 @@ export class Command {
 
     const icon = this.isPlaying ? "pause" : "play";
 
-    iconElt.classList.remove("fa-pause");
-    iconElt.classList.remove("fa-play");
-    iconElt.classList.add(`fa-${icon}`);
+    Command.iconElt.classList.remove("fa-pause");
+    Command.iconElt.classList.remove("fa-play");
+    Command.iconElt.classList.add(`fa-${icon}`);
   }
 
   setActions() {
