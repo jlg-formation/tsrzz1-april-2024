@@ -6,7 +6,7 @@ export type Callback = (newConfig: Config) => void;
 
 const playBtn = querySelector("div.command div.buttons button[title='Play']");
 const randomBtn = querySelector(
-  "div.command div.buttons button[title='Random']"
+  "div.command div.buttons button[title='Random']",
 );
 const iconElt = querySelector("div.command div.buttons button[title='Play'] i");
 
@@ -60,7 +60,7 @@ export class Command {
 
       const sliderElt = querySelector(
         `div.command label.${key} input`,
-        HTMLInputElement
+        HTMLInputElement,
       );
 
       sliderElt.value = this.config[key] + "";
@@ -77,7 +77,7 @@ export class Command {
     for (const key of getKeys(this.config)) {
       const sliderElt = querySelector(
         `div.command label.${key} input`,
-        HTMLInputElement
+        HTMLInputElement,
       );
       sliderElt.addEventListener("input", () => {
         this.config = { ...this.config, [key]: +sliderElt.value };

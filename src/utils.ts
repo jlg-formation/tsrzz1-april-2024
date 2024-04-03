@@ -2,7 +2,7 @@ import { Class } from "./interfaces/utility-types";
 
 export const querySelector = <T extends HTMLElement>(
   selector: string,
-  type?: Class<T>
+  type?: Class<T>,
 ): T => {
   const elt = document.querySelector<T>(selector);
   if (elt === null) {
