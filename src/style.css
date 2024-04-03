@@ -1,3 +1,5 @@
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
+
 * {
   box-sizing: border-box;
 }
@@ -52,5 +54,6 @@ div.command {
   button {
     padding: 0.5em 1em;
     cursor: pointer;
+    width: 8em;
   }
 }

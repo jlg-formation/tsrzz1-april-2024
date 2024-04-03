@@ -1,10 +1,14 @@
+import { multiplicationFactorMax, samplesMax, step } from "./constants";
 import { Config } from "./interfaces/Config";
-import { getKeys, querySelector } from "./utils";
+import { getKeys, querySelector, random, sleep } from "./utils";
 
 export type Callback = (newConfig: Config) => void;
 
 const playBtn = querySelector("div.command div.buttons button[title='Play']");
-console.log("playBtn: ", playBtn);
+const randomBtn = querySelector(
+  "div.command div.buttons button[title='Random']"
+);
+const iconElt = querySelector("div.command div.buttons button[title='Play'] i");
 
 export class Command {
   _config: Config = {
@@ -12,6 +16,7 @@ export class Command {
     multiplicationFactor: 0,
   };
   callback: Callback = () => {};
+  isPlaying = false;
 
   constructor() {
     this.render();
@@ -32,6 +37,22 @@ export class Command {
     this.callback = callback;
   }
 
+  async play() {
+    while (this.isPlaying) {
+      // play
+      // on recupere multiplicationFactor et on l'incremente d'un step tout les x ms.
+      // on veille a ce que le render soit fait.
+
+      let mf = this.config.multiplicationFactor;
+      mf += step;
+      mf %= multiplicationFactorMax;
+      mf = +mf.toFixed(2);
+      this.config = { ...this.config, multiplicationFactor: mf };
+      this.callback(this.config);
+      await sleep(1000 / 60);
+    }
+  }
+
   render() {
     for (const key of getKeys(this.config)) {
       const elt = querySelector(`div.command label.${key} span.value`);
@@ -44,6 +65,12 @@ export class Command {
 
       sliderElt.value = this.config[key] + "";
     }
+
+    const icon = this.isPlaying ? "pause" : "play";
+
+    iconElt.classList.remove("fa-pause");
+    iconElt.classList.remove("fa-play");
+    iconElt.classList.add(`fa-${icon}`);
   }
 
   setActions() {
@@ -60,11 +87,27 @@ export class Command {
     }
 
     this.setPlayAction();
+    this.setRandomConfigAction();
   }
 
   setPlayAction() {
     playBtn.addEventListener("click", () => {
       console.log("play pause");
+      this.isPlaying = !this.isPlaying;
+      if (this.isPlaying) {
+        this.play();
+      }
+      this.render();
+    });
+  }
+
+  setRandomConfigAction() {
+    randomBtn.addEventListener("click", () => {
+      console.log("get random config");
+      const multiplicationFactor = random(0, multiplicationFactorMax);
+      const samples = random(0, samplesMax);
+      this.config = { multiplicationFactor, samples };
+      this.callback(this.config);
     });
   }
 }

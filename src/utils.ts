@@ -23,3 +23,17 @@ export const setNbrAttribute = (elt: Element, key: string, value: number) => {
 export const getKeys = <T extends object>(obj: T): (keyof T)[] => {
   return Object.keys(obj) as (keyof T)[];
 };
+
+export type millisecond = number;
+
+export const sleep = (d: millisecond) => new Promise(r => setTimeout(r, d));
+
+/**
+ * Get a **random number** between `min` and `max`, with a precision of `decimal` digit.
+ *
+ * @param {number} min
+ * @param {number} max
+ * @param {number} [decimal=0]
+ */
+export const random = (min: number, max: number, decimal = 0) =>
+  +(Math.random() * (max - min) + min).toFixed(decimal);
