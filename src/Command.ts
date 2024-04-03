@@ -11,7 +11,7 @@ const randomBtn = querySelector(
 const iconElt = querySelector("div.command div.buttons button[title='Play'] i");
 
 export class Command {
-  _config: Config = {
+  #config: Config = {
     samples: 0,
     multiplicationFactor: 0,
   };
@@ -24,12 +24,12 @@ export class Command {
   }
 
   get config() {
-    return this._config;
+    return this.#config;
   }
 
   set config(val: Config) {
     console.log("set config");
-    this._config = val;
+    this.#config = val;
     this.render();
   }
 

@@ -17,5 +17,3 @@ command.onUpdate(newConfig => {
   board.setConfig(newConfig);
   board.render();
 });
-
-//////////////////////////////////
